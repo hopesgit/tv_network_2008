@@ -16,9 +16,16 @@ class Network
   def main_characters
     @shows.map do |show|
       show.characters.find_all do |character|
-        # require "pry"; binding.pry
         character.salary > 500000 && character.name[1].ord == character.name.upcase[1].ord
       end
     end.flatten
+  end
+
+  def actors_by_show
+    hash_actors_by_show = {}
+    @shows.each do |show|
+      hash_actors_by_show[show] = show.actors
+    end
+    hash_actors_by_show
   end
 end
